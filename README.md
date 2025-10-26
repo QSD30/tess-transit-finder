@@ -1,64 +1,34 @@
 # TESS Transit Finder
 
-A Python CLI project that detects exoplanet transits in TESS light curves.
+This is a simple tool to find exoplanet transits in TESS data.
 
-## Installation
+## How to use it
 
-1.  Clone this repository:
+1.  **Clone the code:**
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/QSD30/tess-transit-finder.git
     cd tess-transit-finder
     ```
 
-2.  Install the required dependencies:
+2.  **Install the good stuff:**
     ```bash
     pip install -r requirements.txt
     ```
 
-3.  Install the project in editable mode:
+3.  **Run it!**
+    Here's an example for the star Pi Mensae:
     ```bash
-    pip install -e .
+    python -m tess_transit_finder.cli --target "Pi Men" --sector 1
     ```
+    This will create an `outputs` directory with the results.
 
-4.  (Optional) For the animation feature, you need to have ffmpeg installed.
+## What you get
 
-## Usage
+The tool will spit out a few files:
 
-The CLI tool can be run from the command line:
-
-```bash
-tess-transit-finder --target "<target-name-or-tic-id>" --sector <sector-number> --out <output-directory>
-```
-
-### Example
-
-Here is an example of how to run the tool on a known TESS planet host, Pi Mensae (TIC 261136679), which was observed in Sector 1:
-
-```bash
-tess-transit-finder --target "Pi Men" --sector 1 --out ./outputs
-```
-
-## Expected Outputs
-
-The tool will create an output directory (e.g., `./outputs`) containing the following files:
-
--   `raw.png`: The raw light curve as downloaded.
--   `flattened.png`: The cleaned and flattened light curve.
--   `bls.png`: The BLS power spectrum, with the best period highlighted.
--   `phase_folded.png`: The light curve folded on the best-fit period, with a simple box model.
--   `report.csv`: A CSV file containing the best-fit parameters (period, t0, duration, depth, SNR).
--   `phase_animation.mp4`: An animation of the phase-folded transit (requires ffmpeg).
-
-### Example Output Images
-
-**Flattened Light Curve:**
-
-![Flattened Light Curve](https.storage.googleapis.com/gemini-community-governance/images/tess-transit-finder/flattened.png)
-
-**BLS Power Spectrum:**
-
-![BLS Power Spectrum](https.storage.googleapis.com/gemini-community-governance/images/tess-transit-finder/bls.png)
-
-**Phase-Folded Light Curve:**
-
-![Phase-Folded Light Curve](https.storage.googleapis.com/gemini-community-governance/images/tess-transit-finder/phase_folded.png)
+*   `raw.png`: The raw data from TESS.
+*   `flattened.png`: The cleaned-up data.
+*   `bls.png`: A plot that shows the most likely transit periods.
+*   `phase_folded.png`: The transit, nice and clear.
+*   `report.csv`: A file with the nitty-gritty details of the transit.
+*   `phase_animation.mp4`: A cool animation of the transit (if you have ffmpeg installed).
